@@ -19,7 +19,7 @@ console.log(u);
     throw new Error('Network response was not ok.');
   })
   .then(res => {
-    console.log(res);
+    console.log('result', res);
   })
   .catch(error => {
     console.error(error);
@@ -27,11 +27,7 @@ console.log(u);
 }
 
 (function() {
-console.log('test');
 track();
-// lib.aurawalls.tracking['@dev'].track({name: 'Dolores Abernathy'})
-// .then(result => console.log(result))
-// .catch(err => console.log(err));
   
 // 	skel.breakpoints({
 // 		xlarge: '(max-width: 1680px)',
