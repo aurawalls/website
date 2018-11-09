@@ -1,6 +1,7 @@
 /**
-* @returns {any}
+* A tracking function
+* @returns {string}
 */
 module.exports = (context, callback) => {
-  callback(null, 'hello dev');
+  callback(null, 'tracked');
 };

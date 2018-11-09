@@ -1,104 +1,131 @@
-/*
-	Snapshot by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
+/* global fetch */
 
-(function($) {
+const version = require("../../aurawalls/tracking/package.json").version;
+let track_uri = process.env.MS_TRACK_URI.replace('_version_', version);
 
-	skel.breakpoints({
-		xlarge: '(max-width: 1680px)',
-		large: '(max-width: 1280px)',
-		medium: '(max-width: 980px)',
-		small: '(max-width: 736px)',
-		xsmall: '(max-width: 480px)'
-	});
+function track() {
+  let u = `${process.env.MS_URI}/${track_uri}`;
+console.log(u);
+  fetch(u, {
+    method: "GET",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+  })
+  .then(res => {
+    if (res.ok) return res.json();
+    throw new Error('Network response was not ok.');
+  })
+  .then(res => {
+    console.log(res);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
 
-	$(function() {
+(function() {
+console.log('test');
+track();
+// lib.aurawalls.tracking['@dev'].track({name: 'Dolores Abernathy'})
+// .then(result => console.log(result))
+// .catch(err => console.log(err));
+  
+// 	skel.breakpoints({
+// 		xlarge: '(max-width: 1680px)',
+// 		large: '(max-width: 1280px)',
+// 		medium: '(max-width: 980px)',
+// 		small: '(max-width: 736px)',
+// 		xsmall: '(max-width: 480px)'
+// 	});
 
-		var	$window = $(window),
-			$body = $('body');
+// 	$(function() {
 
-		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
+// 		var	$window = $(window),
+// 			$body = $('body');
 
-			$window.on('load', function() {
-				window.setTimeout(function() {
-					$body.removeClass('is-loading');
-				}, 100);
-			});
+// 		// Disable animations/transitions until the page has loaded.
+// 			$body.addClass('is-loading');
 
-		// Fix: Placeholder polyfill.
-			$('form').placeholder();
+// 			$window.on('load', function() {
+// 				window.setTimeout(function() {
+// 					$body.removeClass('is-loading');
+// 				}, 100);
+// 			});
 
-		// Prioritize "important" elements on medium.
-			skel.on('+medium -medium', function() {
-				$.prioritize(
-					'.important\\28 medium\\29',
-					skel.breakpoint('medium').active
-				);
-			});
+// 		// Fix: Placeholder polyfill.
+// 			$('form').placeholder();
 
-		// Scrolly.
-			$('.scrolly').scrolly();
+// 		// Prioritize "important" elements on medium.
+// 			skel.on('+medium -medium', function() {
+// 				$.prioritize(
+// 					'.important\\28 medium\\29',
+// 					skel.breakpoint('medium').active
+// 				);
+// 			});
 
-		// Gallery.
-			$('.gallery').each(function() {
+// 		// Scrolly.
+// 			$('.scrolly').scrolly();
 
-				var	$gallery = $(this),
-					$content = $gallery.find('.content');
+// 		// Gallery.
+// 			$('.gallery').each(function() {
 
-				// Poptrox.
-					$content.poptrox({
-						usePopupCaption: true
-					});
+// 				var	$gallery = $(this),
+// 					$content = $gallery.find('.content');
 
-				// Tabs.
-					$gallery.each( function() {
+// 				// Poptrox.
+// 					$content.poptrox({
+// 						usePopupCaption: true
+// 					});
 
-						var $this = $(this),
-							$tabs = $this.find('.tabs a'),
-							$media = $this.find('.media');
+// 				// Tabs.
+// 					$gallery.each( function() {
 
-						$tabs.on('click', function(e) {
+// 						var $this = $(this),
+// 							$tabs = $this.find('.tabs a'),
+// 							$media = $this.find('.media');
 
-							var $this = $(this),
-								tag = $this.data('tag');
+// 						$tabs.on('click', function(e) {
 
-							// Prevent default.
-							 	e.preventDefault();
+// 							var $this = $(this),
+// 								tag = $this.data('tag');
 
-							// Remove active class from all tabs.
-								$tabs.removeClass('active');
+// 							// Prevent default.
+// 							 	e.preventDefault();
 
-							// Reapply active class to current tab.
-								$this.addClass('active');
+// 							// Remove active class from all tabs.
+// 								$tabs.removeClass('active');
 
-							// Hide media that do not have the same class as the clicked tab.
-								$media
-									.fadeOut('fast')
-									.each(function() {
+// 							// Reapply active class to current tab.
+// 								$this.addClass('active');
 
-										var $this = $(this);
+// 							// Hide media that do not have the same class as the clicked tab.
+// 								$media
+// 									.fadeOut('fast')
+// 									.each(function() {
 
-										if ($this.hasClass(tag))
-											$this
-												.fadeOut('fast')
-												.delay(200)
-												.queue(function(next) {
-													$this.fadeIn();
-													next();
-												});
+// 										var $this = $(this);
 
-									});
+// 										if ($this.hasClass(tag))
+// 											$this
+// 												.fadeOut('fast')
+// 												.delay(200)
+// 												.queue(function(next) {
+// 													$this.fadeIn();
+// 													next();
+// 												});
 
-						});
+// 									});
 
-					});
+// 						});
+
+// 					});
 
 
-			});
+// 			});
 
-	});
+// 	});
 
-})(jQuery);
+})();

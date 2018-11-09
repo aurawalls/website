@@ -1,13 +1,6 @@
 @import url('@fortawesome/fontawesome-free/css/fontawesome.min.css');
 @import url('@fortawesome/fontawesome-free/css/solid.min.css');
 @import url('@fortawesome/fontawesome-free/css/brands.min.css');
-@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600');
-
-/*
-	Snapshot by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
 
 /* Reset */
 
@@ -99,7 +92,7 @@
 	}
 
 	body, input, select, textarea {
-		font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+		font-family: "Concert One", cursive;
 		font-size: 13pt;
 		font-weight: 300;
 		line-height: 1.65;
