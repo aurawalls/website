@@ -10,7 +10,8 @@
     "prebuild": "rm -rf docs && cp -R ./assets ./docs",
     "build": "parcel build src/index.html --out-dir docs --no-source-maps --log-level 4",
     "serve": "ENDPOINT_LIB=https://study-alexiszuck.c9users.io:8082 parcel src/index.html --out-dir docs --port $PORT --log-level 4 --hmr-port 8081",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "git subtree push --prefix docs pages master"
   },
   "repository": {
     "type": "git",
